@@ -1,0 +1,46 @@
+[project]
+name = "pooled-auroc-ranks-questions"
+version = "0.1.0"
+description = "Code for: Pooled AUROC Ranks Questions, Not Answers (within-question discrimination of LLM hallucination detectors)."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # Deep learning (CUDA 12.8 wheels support Blackwell / RTX 50xx, sm_120)
+    "torch>=2.7",
+    "transformers>=4.50",
+    "accelerate>=1.5",
+    "bitsandbytes>=0.45",
+    "sentence-transformers>=4.0",
+    "safetensors",
+    "huggingface-hub",
+    "datasets>=3.0",
+    # Scientific stack
+    "numpy",
+    "scipy",
+    "pandas",
+    "pyarrow",
+    "scikit-learn",
+    "statsmodels",
+    "matplotlib",
+    # IR / NLP utilities
+    "faiss-cpu",
+    "rank-bm25",
+    "nltk",
+    "rapidfuzz",
+    # Tooling
+    "tqdm",
+    "pyyaml",
+    "ipykernel",
+    "jupyterlab",
+    "pymupdf>=2.1",
+]
+
+[tool.uv]
+package = false
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }

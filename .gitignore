@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Model caches and large per-run artefacts (regenerable)
+.cache/
+data/
+outputs/
+outputs_*/*__*/
+outputs_*/logs/
+*.safetensors
+*.bin
+*.npy
+*.npz
+*.pt
+*.parquet
+
+# Generated paper assets (written by make_figures.py / make_tables.py)
+paper/
