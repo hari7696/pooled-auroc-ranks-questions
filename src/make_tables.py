@@ -39,8 +39,8 @@ def table_data():
         r"\begin{table}[t]", r"\centering",
         r"\caption{Greedy accuracy (Acc.) and share of \emph{mixed} questions, whose ten samples are "
         r"partly correct (Mix.), in \%. Mixed questions are the only ones on which best-of-$n$ "
-        rf"selection can matter. Judge and alias labels agree on {agree:.1f}\% of answers.}}",
-        r"\label{tab:data}", r"\setlength{\tabcolsep}{3.6pt}",
+        rf"selection can matter. Judge and alias labels agree on {agree:.1f}\% of answers (mean over runs).}}",
+        r"\label{tab:data}",
         r"\begin{tabular}{lrrrrrr}", r"\toprule",
         rf"& {head} \\",
         r"\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}",
@@ -67,7 +67,7 @@ def table_detectors():
         rows.append(f"{famcell} & {name} & {f3(r.auroc)} & {f3(rng.loc[det, 'min'])}--{f3(rng.loc[det, 'max'])} & "
                     f"{f3(r.auroc_w)} & {sig} & {100 * r.gain_mixed:+.1f} & {f3(r.abst_aurc)}" + r" \\")
     return "\n".join([
-        r"\begin{table*}[t]", r"\centering",
+        r"\begin{table}[t]", r"\centering", r"\small",
         r"\caption{Detectors averaged over 18 runs (6 models $\times$ 3 datasets, 2{,}000 questions, "
         r"10 samples each). $A$: pooled AUROC over all sampled answers, with its range over runs. "
         r"$A_W$: pair-weighted within-question AUROC on mixed questions. Sig.: runs (of 18) whose 95\% "
@@ -79,7 +79,7 @@ def table_detectors():
         r"\label{tab:detectors}",
         r"\begin{tabular}{llcccccc}", r"\toprule",
         r"Family & Detector & $A$ & $A$ range & $A_W$ & Sig. & Gain & AURC \\", r"\midrule", *rows,
-        r"\bottomrule", r"\end{tabular}", r"\end{table*}"])
+        r"\bottomrule", r"\end{tabular}", r"\end{table}"])
 
 
 def table_robustness():
@@ -97,10 +97,10 @@ def table_robustness():
     return "\n".join([
         r"\begin{table}[t]", r"\centering",
         r"\caption{Which component predicts which decision. Spearman correlation across 216 "
-        r"(run, answer-level detector) cells between best-of-10 gain or abstention AUROC and the pooled "
+        r"(run, answer-level detector) cells between best-of-10 gain or abstention AUROC (on greedy answers) and the pooled "
         r"($A$) or within-question ($A_W$) AUROC. Main: probes at layer $3L/4$, judge labels. "
         r"Last column: centred probe, $A$\,/\,$A_W$.}",
-        r"\label{tab:robust}", r"\setlength{\tabcolsep}{3pt}",
+        r"\label{tab:robust}",
         r"\begin{tabular}{lccccc}", r"\toprule",
         r"& \multicolumn{2}{c}{Best-of-10 gain} & \multicolumn{2}{c}{Abstention} & Centred \\",
         r"\cmidrule(lr){2-3}\cmidrule(lr){4-5}",

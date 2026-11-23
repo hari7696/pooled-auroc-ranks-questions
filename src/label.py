@@ -2,7 +2,7 @@
 
 Two labellers:
   * alias  : lenient normalised string match against the gold aliases;
-  * judge  : Qwen2.5-7B-Instruct (4-bit) graded with references; we store the log-odds of
+  * judge  : Qwen2.5-7B-Instruct (bfloat16) graded with references; we store the log-odds of
              "Yes" vs "No". Each unique (question, normalised answer) is judged once.
 
 Usage: python src/label.py --runs qwen3b__triviaqa llama3b__nq ...   (default: all finished)
